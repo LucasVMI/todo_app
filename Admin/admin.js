@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const listItem = document.createElement('li');
                 listItem.textContent = user.username;
                 listItem.dataset.userId = user.id;
-                listItem.style.cursor = 'pointer'; // Add cursor style to indicate clickable
+                listItem.style.cursor = 'pointer';
                 listItem.addEventListener('click', handleUserClick);
                 userList.appendChild(listItem);
             });

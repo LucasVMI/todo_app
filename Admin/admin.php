@@ -7,8 +7,16 @@
 </head>
 <body>
     <h1>Admin Page</h1>
+
+    <form id="add-admin-form" action="add_admin.php" method="POST">
+        <label for="new-username">New Admin Username:</label>
+        <input type="text" id="new-username" name="username" required>
+        <label for="new-password">New Admin Password:</label>
+        <input type="password" id="new-password" name="password" required>
+        <button type="submit">Add Admin</button>
+</form>
+
     <ul id="user-list">
-        <!-- Users will be listed here -->
     </ul>
     <form id="reset-password-form">
         <input type="hidden" id="user-id" name="userId">
