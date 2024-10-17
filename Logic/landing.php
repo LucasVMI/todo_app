@@ -31,7 +31,7 @@
         <button onclick="window.location.href='register.php'" class="btn">Register</button>
     </div>
 
-    <!-- Login Modal -->
+    
     <div id="login-modal" class="modal">
         <div class="modal-content">
             <span class="close">×</span>
@@ -50,32 +50,32 @@
             const closeModal = document.querySelector('.close');
             const form = document.getElementById('todo-form');
 
-            // Function to show the login modal
+            
             function showLoginModal() {
                 loginModal.style.display = 'block';
             }
 
-            // Function to close the login modal
+            
             function closeLoginModal() {
                 loginModal.style.display = 'none';
             }
 
-            // Event listener for the close button
+            
             closeModal.addEventListener('click', function() {
                 closeLoginModal();
             });
 
-            // Event listener for clicks outside the modal content
+           
             window.addEventListener('click', function(event) {
                 if (event.target == loginModal) {
                     closeLoginModal();
                 }
             });
 
-            // Event listener for form submission
+           
             form.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent the form from submitting
-                showLoginModal(); // Show the login modal
+                event.preventDefault(); 
+                showLoginModal(); 
             });
         });
     </script>

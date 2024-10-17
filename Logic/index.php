@@ -19,7 +19,7 @@ session_start();
     <div class="container">
     <?php
     if ($_SESSION['role'] === 'admin') {
-        echo 'admin';
+        echo '<a href="admin.php">Admin Page</a>';
     }
     ?>
         <h1>To-Do List</h1>
