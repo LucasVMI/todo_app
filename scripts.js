@@ -89,6 +89,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    document.getElementById('share-list-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = 
+        document.querySelector('input[name="username"').value;
+        const listId =
+        document.querySelector('input[name="list_id"').value;
+
+        fetch ('share_list.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({ username, list_id: listId })
+        })
+        .then(response => response.text())
+        .then(data => alert(data))
+        .catch(error => console.error('Error:', error));
+    });
+
     function loadTasks() {
         fetch('todo_list.php')
             .then(response => {
