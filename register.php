@@ -1,36 +1,25 @@
-<?php
-session_start();
-// Database connection
-$dsn = 'mysql:host=localhost;dbname=todo_app';
-$username = getenv('DB_USERNAME') ?: 'root';
-$password = getenv('DB_PASSWORD') ?: '1qaz!QAZ';
-$options = [];
-try {
-    $pdo = new PDO($dsn, $username, $password, $options);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    error_log("Database connection error: " . $e->getMessage());
-    exit("Database connection error");
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = htmlspecialchars($_POST['username']);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-    try {
-        $stmt = $pdo->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
-        $stmt->execute();
-
-        $_SESSION['username'] = $username;
-        $_SESSION['user_id'] = $user_id;
-        
-        header("Location: index.html");
-        exit();
-    } catch (PDOException $e) {
-        error_log("Insert error: " . $e->getMessage());
-        echo "Error: " . $e->getMessage();
-    }
-}
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="auth-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="container register">
+        <h2>Register</h2>
+        <form action="registerform.php" method="post"> 
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <script src="particles-config.js"></script>
+</body>
+</html>

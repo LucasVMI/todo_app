@@ -27,8 +27,8 @@
             <button type="submit" class="btn">Add Task</button>
         </form>
         <ul id="task-list"></ul>
-        <button onclick="window.location.href='login.html'" class="btn">Log In</button>
-        <button onclick="window.location.href='register.html'" class="btn">Register</button>
+        <button onclick="window.location.href='login.php'" class="btn">Log In</button>
+        <button onclick="window.location.href='register.php'" class="btn">Register</button>
     </div>
 
     <!-- Login Modal -->
@@ -36,8 +36,8 @@
         <div class="modal-content">
             <span class="close">×</span>
             <p>Please log in or register to save your tasks.</p>
-            <button onclick="window.location.href='register.html'" class="btn">Register</button>
-            <button onclick="window.location.href='login.html'" class="btn">Login</button>
+            <button onclick="window.location.href='register.php'" class="btn">Register</button>
+            <button onclick="window.location.href='login.php'" class="btn">Login</button>
         </div>
     </div>
 

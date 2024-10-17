@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('delete_account.php', { method: 'POST' })
             .then(response => {
                 if (response.ok) {
-                    window.location.href = 'login.html';
+                    window.location.href = 'login.php';
                 } else {
                     alert('Failed to delete account.');
                 }

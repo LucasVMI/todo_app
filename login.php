@@ -1,43 +1,54 @@
-<?php
-session_start();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="auth-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="container login">
+        <h2>Login</h2>
+        <p id="error-message" class="error" style="display: none;"></p>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 
-$dsn = 'mysql:host=localhost;dbname=todo_app';
-$username = getenv('DB_USERNAME') ?: 'root';
-$password = getenv('DB_PASSWORD') ?: '1qaz!QAZ';
-$options = [];
-try {
-    $pdo = new PDO($dsn, $username, $password, $options);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    error_log("Database connection error: " . $e->getMessage());
-    exit(json_encode(["error" => "Database connection error"]));
-}
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particles-config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+            const errorMessage = document.getElementById('error-message');
 
-$response = [];
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent the form from submitting the traditional way
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = htmlspecialchars($_POST['username']);
-    $password = $_POST['password'];
+                const formData = new FormData(loginForm);
 
-    try {
-        $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['username'] = $username;
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['role'] = $user['role'];
-            $response['success'] = true;
-        } else {
-            $response['error'] = 'Invalid username or password';
-        }
-    } catch (PDOException $e) {
-        error_log("Select error: " . $e->getMessage());
-        $response['error'] = "Error: " . $e->getMessage();
-    }
-}
-
-echo json_encode($response);
-?>
+                fetch('loginauth.php', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          window.location.href = 'index.php'; // Redirect on successful login
+                      } else {
+                          errorMessage.textContent = data.error; // Display error message
+                          errorMessage.style.display = 'block'; // Ensure the error message is visible
+                      }
+                  }).catch(error => {
+                      console.error('Error:', error);
+                  });
+            });
+        });
+    </script>
+</body>
+</html>
