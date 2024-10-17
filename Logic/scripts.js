@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const usernameSpan = document.getElementById('username');
     const loginModal = document.getElementById('login-modal');
     const closeModal = document.querySelector('.close');
-    const logoutBtn = document.getElementById('logout'); // Add this line
+    const logoutBtn = document.getElementById('logout'); 
     console.log('Page loaded, calling loadTasks');
     console.log('Login modal element:', loginModal);
 
