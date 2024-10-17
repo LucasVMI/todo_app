@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+<?php
+session_start();
+?>
+>>>>>>> 4fce984 (.)
 <!DOCTYPE html>
 <html lang="en">
 <head>
