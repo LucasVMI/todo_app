@@ -1,24 +1,21 @@
-<<<<<<< HEAD
-=======
 <?php
 session_start();
 ?>
->>>>>>> 4fce984 (.)
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
+    <header>
+        <h1>Welcome, <span id="username"></span>!</h1>
+    </header>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
     <div id="particles-js"></div>
-    <header>
-        <h1>Welcome, <span id="username"></span>!</h1>
-    </header>
     <div class="container">
     <?php
     if ($_SESSION['role'] === 'admin') {

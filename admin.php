@@ -25,6 +25,7 @@
         <input type="hidden" id="user-id" name="userId">
         <input type="password" id="new-password" name="newPassword" placeholder="New Password">
         <button type="submit">Reset Password</button>
+        <button id="logout" class="logout-btn" type="button">Log Out</button>
     </form>
     <script src="admin.js"></script>
     <script src="particles-config.js"></script>

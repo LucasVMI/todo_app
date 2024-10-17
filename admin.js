@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const logoutBtn = document.getElementById('logout'); 
+
+    if (logoutBtn) { // Add this null check
+        logoutBtn.addEventListener('click', function() {
+            window.location.href = 'logout.php';
+        });
+    }
+
     fetch('fetch_users.php')
         .then(response => response.json())
         .then(users => {
