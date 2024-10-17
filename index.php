@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +17,11 @@
         <h1>Welcome, <span id="username"></span>!</h1>
     </header>
     <div class="container">
+    <?php
+    if ($_SESSION['role'] === 'admin') {
+        echo 'admin';
+    }
+    ?>
         <h1>To-Do List</h1>
         <form id="todo-form">
             <input type="text" name="task" placeholder="Add a new task" required>
